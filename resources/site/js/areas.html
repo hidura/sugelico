@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+
+	
+</head>
+
+<body>
+
+	<div class="container">
+	<header>
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 lateral_panel">
+					<nav class="navbar">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header ">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#principal_menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+							<a class="navbar-brand" href="#"><img src="images/logo-blanco3.svg"></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="principal_menu">
+							<ul class="nav navbar-nav ">
+								<li><a href="#">Link</a></li>
+								<li><a href="#" class="selected">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#" class="close_sesion">Cerrar session</a></li>
+							</ul>
+
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 user_info right">
+							<p>Bienvenido, NOMBRE DE EMPRESA</p>
+							<p>Fecha: 00/00/0000 00:00</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Crear Area</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="area_name">Nombre del area</label>
+													<input type="text" class="form-control" id="area_name" name="area_name" placeholder="Nombre del area" required >
+												</div>
+												<div class="form-group">
+													<label for="description">Descripción</label>
+													<input type="text" class="form-control" id="description" name="description" placeholder="Descripción" required>
+												</div>
+												<div class="checkbox">
+												    <label>
+													<input type="checkbox" name="status" id="status"> Estado
+													</label>
+												</div>
+											  <button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Todas las Areas</h3>
+										</div>
+										<div class="panel-body table_panel">
+										<div class="table-responsive">
+											<table class="table table-hover display" id="areas_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Nombre de area</th>
+											  	<th>Descripción</th>
+											  	<th>Estado</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Nombre de area</th>
+												  	<th>Descripción</th>
+												  	<th>Estado</th>
+											  		<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+
+											  <tbody>
+											  	<tr >
+											  		<td>category 1</td>
+											  		<td>CJSK-23a32-DD</td>
+											  		<td>Activa</td>
+											  		<td><button class="btn btn-success edit_area" data-id="1" data-toggle="modal" data-target="#edit_area"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_area" data-id="1" data-toggle="modal" data-target="#delete_area"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  	<tr >
+											  		<td>category 2</td>
+											  		<td>CJSK-23a32-DD</td>
+											  		<td>Activa</td>
+											  		<td><button class="btn btn-success edit_area" data-id="1" data-toggle="modal" data-target="#edit_area"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_area" data-id="1" data-toggle="modal" data-target="#delete_area"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<!-- EDITAR category -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_area">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar Area</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar Area</h3>
+						</div>
+						<div class="panel-body">
+							<form id="edit_category_form">
+								<div class="form-group">
+									<label for="area_name">Nombre del area</label>
+									<input type="text" class="form-control" id="area_name" name="area_name" placeholder="Nombre del area" required >
+								</div>
+								<div class="form-group">
+									<label for="description">Descripción</label>
+									<input type="text" class="form-control" id="description" name="description" placeholder="Descripción" required>
+								</div>
+								<div class="checkbox">
+								    <label>
+									<input type="checkbox" name="status" id="status"> Estado
+									</label>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_area_btn">Editar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/areas.js"></script>
+
+</body>
+
+</html>							

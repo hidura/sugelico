@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Deep Blue Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/general.css" />
+    <link href="js/bower_components/bootstrap-switch/dist/css/bootstrap2/bootstrap-switch.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/local.css" />
+    <link rel="stylesheet" type="text/css" href="js/datatable/datatable.css"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
+    <script src="js/bower_components/bootbox.js/bootbox.js" type="text/javascript"></script>
+    <script src="js/datatable/datatable.js" type="text/javascript"></script>
+    <script src="js/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/system/connection.js"></script>
+    <script type="text/javascript" src="js/system/general.js"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Admin Panel</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul id="sidebar" class="nav navbar-nav side-nav">
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Mensajes <span  id="msg_amount">2</span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li id="new_messages" class="dropdown-header"></li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-bell"></i></span>
+                                    <span class="message">Security alert</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-bell"></i></span>
+                                    <span class="message">Security alert</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
+                        </ul>
+                    </li>
+                     <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="person_name"></span><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+
+                <div class="col-md-12 no-print">
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label id="category_lbl">Categoria de producto</label>
+                            <select id="category" name="category"
+                                   class="form-control" >
+                                <option value="0" >Todo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <br/>
+                        <button class="btn btn-primary" onClick="search(); return false;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Codigo
+                                </td>
+                                <td>
+                                    Producto
+                                </td>
+                                <td width="50px">
+                                    Precio
+                                </td>
+                                <td width="50px">
+                                    Descuento
+                                </td>
+                                <td width="100px">
+                                    Hora de inicio
+                                </td>
+                                <td width="100px">
+                                    Hora final
+                                </td>
+                                <td width="150px">
+                                    Días
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody id="item_tbd">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+</body>
+<style>
+    table{
+        font-family: Cambria,serif;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
+</style>
+<script type="text/javascript">
+$(function () {
+        getTypes($("#product_type"), 4);
+        success=function (result,status,xhr) {
+            $.each(result, function (index, field) {
+                $("#category").append($('<option />').val(field.code).html(field.cat_name));
+            });
+        };
+        error = function (xhr,status,error){
+            console.log(error("error"));
+        };
+        serverCall("get","/?classname=Categories.Get&cat_name=&cat_type=61", success, error, false);
+    });
+    function search() {
+        var params={};
+        params.classname="Items.getHappyHour";
+        params.category=$("#category").val();
+
+        success=function (result,status,xhr) {
+            console.log(result);
+            $("#item_tbd").empty();
+            if (result.length>0){
+                tr = document.createElement("tr");
+                $(tr).append($('<td />').html("<strong>"+result[0].cat_name+"</strong>"));
+                $("#item_tbd").append(tr);
+                category=result[0].category;
+            }
+            $.each(result, function (index, field) {
+
+                var tr = document.createElement("tr");
+                $(tr).append($('<td />').html("<div class='col-lg-6'><input class='form-control' readonly name='code' value='"+field.code+"'/></div>"));
+                $(tr).append($('<td />').val(field.item_name).html(field.item_name));
+                $(tr).append($('<td />').val(field.subtotal).html(field.subtotal));
+                $(tr).append($('<td />').html("<input class='form-control' type='number' name='discount' value='"+field.discount+"'/>"));
+                $(tr).append($('<td />').html("<input class='form-control' type='time' name='start_hour' value='"+field.start_hour+"'/>"));
+                $(tr).append($('<td />').html("<input class='form-control' type='time' name='end_hour' value='"+field.end_hour+"'/>"));
+                $(tr).append($('<td />').html("" +
+                        "<span><input type='checkbox' name='week_day' value='1' />Lun</span>" +
+                        "<span><input type='checkbox' name='week_day' value='2' />Mar</span>" +
+                        "<span><input type='checkbox' name='week_day' value='3' />Mie</span>" +
+                        "<span><input type='checkbox' name='week_day' value='4' />Jue</span>" +
+                        "<span><input type='checkbox' name='week_day' value='5' />Vie</span>" +
+                        "<span><input type='checkbox' name='week_day' value='6' />Sab</span>" +
+                        "<span><input type='checkbox' name='week_day' value='7' />Dom</span>"));
+                $(tr).append($('<td />').html("<button onClick='saveDisc(this); ' class='btn btn-info'><i class='fa fa-save'></button>"));
+                $("#item_tbd").append(tr)
+            });
+            //$('table').DataTable();
+        };
+        error = function (xhr,status,error){
+            console.log(error);
+        };
+        serverCall("post", params,success, error, false);
+    }
+    function saveDisc(target) {
+        var start_hour=$($(target).parent().parent().find("[name='start_hour']")).val();
+        var end_hour=$($(target).parent().parent().find("[name='end_hour']")).val();
+        var days=$($(target).parent().parent().find("[name='week_day']:checked"));
+        var weekdays=days.map(function () {return this.value;}).get().join(",");
+        var product = $($(target).parent().parent().find("[name='code']")).val();
+        if (start_hour===""){
+            openDialog("Sugelico dice!","No ha seleccionado una hora para el inicio del descuento.");
+            return;
+        }
+        if (end_hour===""){
+            openDialog("Sugelico dice!","No ha seleccionado una hora para el fin del descuento.");
+            return;
+        }
+        if (end_hour===start_hour){
+            openDialog("Sugelico dice!","Las horas no pueden ser iguales.");
+            return;
+        }
+        if (weekdays.length===0){
+            openDialog("Sugelico dice!","No ha seleccionado, los dias del descuento.");
+            return;
+        }
+        success=function (result,status,xhr) {
+            console.log(result);
+        };
+        error = function (xhr,status,error){
+            console.log(error("error"));
+        };
+        var params={};
+        params.classname="Bills.addHappyHour";
+        if (start_hour.split(":").length===2)
+            start_hour+=":00";
+        if (end_hour.split(":").length===2)
+            end_hour+=":00";
+        params.start_hour=start_hour;
+        params.end_hour=end_hour;
+        params.days=weekdays;
+        params.product=product;
+        params.amount_disc=$($(target).parent().parent().find("[name='discount']")).val();
+        serverCall("post", params,success, error, false);
+    };
+</script>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+
+
+	
+</head>
+
+<body>
+
+	<div class="container">
+	<header>
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 col-md-12">
+
+
+					<nav class="navbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+
+
+						<div class="col-sm-1 col-sm-offset-1">
+								<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+							</div>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  </button>
+								  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+								  </div>
+								</div>
+							</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-12 ">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar Producto</h3>
+										</div>
+										<div class="panel-body">
+											<div id="error_alert" class="alert alert-danger alert-dismissible hidden" role="alert">
+											  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											  Ha ocurrido un error creando el nuevo producto.
+											</div>
+											<form id="product_add_form">
+												<div class="form-group">
+													<label for="barcode">Código de barra</label>
+													<input type="text" class="form-control" id="barcode"
+														   name="barcode" placeholder="Código de barra" >
+												</div>
+												<div class="form-group">
+													<label for="item_name">Nombre</label>
+													<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Nombre" required >
+												</div>
+												<div class="form-group">
+													<label for="item_type">Tipo</label>
+													<select class="form-control" id="item_type" name="item_type" required> 
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="amount">Cantidad</label>
+													<input type="number"  value="1" class="form-control" id="amount" name="amount" placeholder="Cantidad" required >
+												</div>
+												<div class="form-group">
+													<label for="initial_cost">Precio Inicial</label>
+													<input value="0" class="form-control"
+														   id="initial_cost" name="initial_cost" placeholder="Precio inicial" >
+												</div>
+												<div class="form-group">
+													<label for="subtotal">Subtotal</label>
+													<input type="text" class="form-control" id="subtotal" name="subtotal" onChange="calculateTax(target)" value="0.00" placeholder="Sub-total" required >
+												</div>
+												<div class="form-group">
+													<label for="item_type">Impuestos</label>
+													<select class="form-control" multiple id="taxes"
+															onChange="addTax(this); return false;" name="taxes" >
+												      </select>
+													<input type="hidden" id="tax" name="tax" value="0.00"/>
+												</div>
+												<div class="form-group">
+													<label for="price">Precio</label>
+													<input type="number" readonly class="form-control" id="price" name="price" placeholder="Precio" required >
+												</div>
+
+												<div class="form-group">
+													<label for="sale_unit">Unidad de Venta</label>
+													<select class="form-control" id="sale_unit" name="unit" required >
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="category">Categoria</label>
+													<select class="form-control" id="category" name="category" required >
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="supplier">Suplidor</label>
+													<select class="form-control" id="supplier" name="supplier" required >
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="description">Descripcion</label>
+													<textarea rows="3" class="form-control" id="description" name="description"></textarea> 
+												</div>
+												<div class="form-group">
+													<label for="status">Status</label><br>
+													<select class="form-control" id="status" name="status">
+														<option value="11">Activo</option>
+														<option value="12">Inactivo</option>
+													  </select>
+												</div>
+
+												<div class="col-lg-12 ">
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h3 class="panel-title">Opciones</h3>
+														</div>
+														<div class="panel-body" >
+															<div class="col-lg-12">
+
+																<button class="btn btn-default btn-md"
+																		onClick="addCompounds(this); return false;">
+																	<i class="fa fa-plus-circle"></i>
+																	<br/>
+																	Agregar componentes
+																</button>
+																<button class="btn btn-default btn-md"
+																		onClick="addRecipe(); return false;">
+																	<i class="fa fa-plus-circle"></i>
+																	<br/>
+																	Agregar Recetas
+																</button>
+                                                                <button class="btn btn-default btn-md"
+																		onClick="addTerms(this); return false;">
+																	<i class="fa fa-plus-circle"></i>
+																	<br/>
+																	Agregar terminos
+																</button>
+																<button class="btn btn-default btn-md"
+																		 onClick="addCompanions(this); return false;">
+																	<i class="fa fa-plus-circle"></i>
+																	<br/>
+																	Agregar Guarniciones
+																</button>
+																<button class="btn btn-default btn-md"
+																		onClick="addOptions(this); return false;">
+																	<i class="fa fa-plus-circle"></i>
+																	<br/>
+																	Agregar opcionales
+																</button>
+															</div>
+
+														</div>
+													</div>
+												</div>
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/products.js"></script>
+
+</body>
+
+</html>							

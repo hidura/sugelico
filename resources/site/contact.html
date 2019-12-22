@@ -1,0 +1,180 @@
+
+
+
+    <div class="row" >
+
+        <script type='text/javascript'>
+            $(function () {
+                getTypes($("#doc_type"), 9);
+                getCountry($("#country"));
+            });
+
+        </script>
+        <div class='row' id="contactLst" style="display: none;"><div class='col-md-6'><div class='form-group'>
+        <label id='product_type_lbl'>Nombre</label><input id='conName' name='contact_name' type='text' class='form-control' /></div></div>	<div class='col-md-2'><br/><button class='btn btn-primary' onClick='search(); return false;'><i class='fa fa-search'></i>		</button></div>
+        <div class="col-md-10"><table id="contact_tbl" class='table table-striped table-bordered dataTable no-footer'>
+        <thead>
+        <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>
+        </th>
+        </tr>
+        </thead>
+        <tbody id='contact_tbd'></tbody>
+        </table></div>
+            <div class="col-md-10" style="text-align: right">
+                <button class="btn btn-danger" onClick="cancelEdit(this); return false;"><i class="fa fa-sign-out"></i> Cerrar</button>
+            </div>
+        </div>
+        <div id="contact_div">
+
+           <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-7">
+                    <button class="btn btn-primary" id="createCon"><i class="fa fa-plus"></i> Nuevo</button>
+                    <button class="btn btn-primary" onClick="load_findContact(this); return false;"><i class="fa fa-search"></i> Bucar</button>
+
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <label for="con_status" class="col-md-5">
+                            Estado:
+                        </label>
+                        <div >
+                            <label class="radio">
+                                <input type="checkbox" name="status"
+                                       id="con_status" >
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+           </div>
+           <div>
+                <label for="con_code" class="col-md-2">
+                    Codigo:
+                </label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" readonly id="con_code" placeholder="Codigo">
+                </div>
+           </div>
+           <div>
+                <label for="firstname" class="col-md-2">
+                    Nombres:
+                </label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="firstname" placeholder="Nombres">
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
+            </div>
+           <div>
+                <label for="lastname" class="col-md-2">
+                    Apellidos:
+                </label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                </div>
+                 <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
+           </div>
+           <div>
+                <label for="emailaddress" class="col-md-2">
+                    Correo electronico:
+                </label>
+                <div class="col-md-9">
+                    <input type="email" class="form-control" id="emailaddress" placeholder="Correo">
+                    <p class="help-block email-block">
+                        (Sera el mismo que usara de usuario)
+                    </p>
+
+                </div>
+           </div>
+           <div>
+                <label for="telephone" class="col-md-2">
+                    Telefono:
+                </label>
+                <div class="col-md-9">
+                    <input type="tel" class="form-control" id="telephone" placeholder="Telefono(Opcional)">
+                    <p class="help-block">
+                        Telefono(Opcional)
+                    </p>
+                </div>
+            </div>
+
+           <div>
+                <label for="cellphone" class="col-md-2">
+                    Celular:
+                </label>
+                <div class="col-md-9">
+                    <input type="tel" class="form-control" id="cellphone" placeholder="Celular(opcional)">
+                    <p class="help-block">
+                        Celular(Opcional)
+                    </p>
+                </div>
+           </div>
+           <div>
+                <label for="address" class="col-md-2">
+                    Dirección:
+                </label>
+                <div class="col-md-9">
+                    <textarea class="form-control" id="address" placeholder="Dirección(opcional)"></textarea>
+                    <p class="help-block">
+                        Dirección(Opcional)
+                    </p>
+                </div>
+           </div>
+            <div>
+                <label for="country" class="col-md-2">
+                    País:
+                </label>
+                <div class="col-md-9">
+                    <select class="form-control" id="country" >
+                        <option value="0">--Seleccione--</option>
+                    </select>
+                </div>
+           </div>
+            <div>
+                <label for="doc_type" class="col-md-2">
+                    Tipo de documento:
+                </label>
+                <div class="col-md-9">
+                    <select class="form-control" id="doc_type" >
+                        <option value="0">--Seleccione--</option>
+                    </select>
+                </div>
+           </div>
+            <div>
+                <label for="document" class="col-md-2">
+                    Documento:
+                </label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="document" placeholder="Celular(opcional)">
+                </div>
+           </div>
+           <div>
+                <label for="birthdate" class="col-md-2">
+                    Cumpleaño:
+                </label>
+                <div class="col-md-9">
+                    <label class="radio">
+                        <input type="date" class="form-control" name="birthdate" id="birthdate" >
+                    </label>
+                </div>
+           </div>
+
+
+           <div>
+
+                <div class="col-md-9">
+                    <button class="btn btn-primary" onClick="saveCon(this); return false;"><i class="fa fa-save"></i> Salvar</button>
+                </div>
+           </div>
+
+        </div>
+    </div>

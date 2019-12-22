@@ -1,0 +1,67 @@
+<div class="row">
+	<form id="formulary">
+		<div class="col-md-10">
+			<div>
+				<div class="col-md-10">
+					<label class="control-label">
+						Código:
+					</label>
+					<input id="sup_code" name="sup_code" readonly
+					   class="form-control" placeholder="Código">
+				</div>
+				<div class="col-md-1"><br/>
+					<button onClick="createSup(this); return false;" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div>
+				<div class="col-md-10">
+					<label class="control-label">
+						Nombre:
+					</label>
+					<input id="supname" name="sup_name"
+					   class="form-control" placeholder="Nombre">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div>
+				<div class="col-md-10">
+					<label class="control-label">
+						Tipo de documento:
+					</label>
+					<select id="doc_type" name="doc_type" class="form-control">
+						<option value="0" readonly>----Seleccione-----</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div>
+				<div class="col-md-10">
+					<label id="doc_type_lbl" class="control-label">
+						RNC:
+					</label>
+					<input id="rnc" name="rnc"
+					   class="form-control" placeholder="RNC">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-10">
+			<div>
+				<div class="col-md-10">
+					<label class="control-label">
+						-----------------------------------------------Contacto----------------------------------------
+					</label>
+					<button class="btn btn-info" onClick="openContact(this); return false;"><i class="fa fa-user"></i>Usuario</button>
+				</div>
+			</div>
+		</div>
+		<div id="contact_div_content" class="col-md-12">
+
+		</div>
+	</form>
+
+</div>

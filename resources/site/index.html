@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico - Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+
+</head>
+
+<body>
+
+	<div class="container">
+		<nav class="navbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+
+
+			<div class="col-sm-1 col-sm-offset-1">
+					<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="dropdown">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+							  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  </button>
+					  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+					  </div>
+					</div>
+				</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+
+			<!-- /.navbar-collapse -->
+		</nav>
+		<div class="col-md-12 main_content">
+
+			<div class="col-md-10" id="main_content">
+				<div class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<div class="card" style="width: 100%">
+						<img class="card-img-top" width="100px;" height="100px;" src="images/payment.svg" alt="Card image cap">
+						<div class="card-body" style="text-align: center">
+							<h5 class="card-title">Ingresos netos</h5>
+							<p class="card-text" id="net_income">0.00</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card" style="width: 100%">
+						<img class="card-img-top" width="100px;" height="100px;" src="images/table.svg" alt="Card image cap">
+						<div class="card-body" style="text-align: center">
+							<h5 class="card-title">Ordenes abiertas</h5>
+							<p class="card-text" id="open_orders">0</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card" style="width: 100%">
+						<img class="card-img-top" width="100px;" height="100px;" src="images/payment.svg" alt="Card image cap">
+						<div class="card-body" style="text-align: center">
+							<h5 class="card-title">Ingresos brutos</h5>
+							<p class="card-text" id="daily_income">0.00</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row" >
+
+					<div class="col-md-12" style="overflow-x: auto" id="paytypes">
+
+				  	</div>
+
+				</div>
+
+				<div class="row">
+					<div id="msg_box" class="col-md-12" style="display: none;">
+						<div class="alert alert-danger" role="alert" id="error_msg">
+
+						</div>
+					</div>
+					<canvas id="bills" width="400" height="400"></canvas>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/system/general.js"></script>
+
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+
+</html>

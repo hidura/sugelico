@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+
+	
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 col-md-12">
+
+
+					<nav class="navbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+
+
+						<div class="col-sm-1 col-sm-offset-1">
+								<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+							</div>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  </button>
+								  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+								  </div>
+								</div>
+							</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-12">
+									<form class="form-inline">
+									  <div class="form-group">
+											<label for="product_type">Tipo de producto</label>
+											<select class="form-control" id="product_type" name="product_type" required > 
+												<option value="0">Seleccionar</option>
+												<option value="75">Cajeros</option>
+												<option value="71">Usuario Administrador</option>
+												<option value="73">Usuario Bajo</option>
+												<option value="72">Usuario Medio</option>
+												<option value="74">Usuario Root</option>
+										      </select>
+										</div>
+									  	<div class="form-group">
+											<label for="product_cat">Categoria de producto</label>
+											<select class="form-control" id="product_cat" name="product_cat" required > 
+												<option value="0">Seleccionar</option>
+												<option value="75">Cajeros</option>
+												<option value="71">Usuario Administrador</option>
+												<option value="73">Usuario Bajo</option>
+												<option value="72">Usuario Medio</option>
+												<option value="74">Usuario Root</option>
+										      </select>
+										</div>
+									  <button id="filter_product_report" type="submit" class="btn btn-primary">Buscar</button>
+									</form>
+								</div>
+							</div> <br>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Productos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="products_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Nombre</th>
+											  	<th>Cantidad</th>
+											  	<th>Tipo</th>
+											  	<th>Categoria</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Nombre</th>
+												  	<th>Cantidad</th>
+												  	<th>Tipo</th>
+												  	<th>Categoria</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>Advil</td>
+											  		<td>12</td>
+											  		<td>Pastilla</td>
+											  		<td>Relajante</td>
+											  		<td><button class="btn btn-success edit_product" data-id="1" data-toggle="modal" data-target="#edit_product"><i class="glyphicon glyphicon-pencil"></i></button></td>
+									            </tr>
+											  	<tr>
+									                <td>Advil</td>
+											  		<td>12</td>
+											  		<td>Pastilla</td>
+											  		<td>Relajante</td>
+											  		<td><button class="btn btn-success edit_product" data-id="1" data-toggle="modal" data-target="#edit_product"><i class="glyphicon glyphicon-pencil"></i></button></td>
+									            </tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+
+	<script type="text/javascript" src="js/products.js"></script>
+
+</body>
+
+</html>							

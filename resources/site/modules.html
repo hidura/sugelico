@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 col-md-12">
+
+
+					<nav class="navbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+
+
+						<div class="col-sm-1 col-sm-offset-1">
+								<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+							</div>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  </button>
+								  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+								  </div>
+								</div>
+							</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de modulos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="modules_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>ID</th>
+											  	<th>Nombre</th>
+											  	<th>Path</th>
+											  	<th>Icono</th>
+											  	<th>Grupos</th>
+											  	<th style="width: 80px;">Accion</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>ID</th>
+												  	<th>Nombre</th>
+												  	<th>Path</th>
+												  	<th>Icono</th>
+												  	<th>Grupos</th>
+												  	<th style="width: 80px;">Accion</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+	<!-- EDITAR MODULOS -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_module">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+			  <h4 class="modal-title">Editar modulo</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar modulo</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_module_form">
+								<div class="form-group col-lg-6">
+									<label for="module_name">Nombre</label>
+									<input type="text" class="form-control" id="module_name" name="module_name" placeholder="Nombre" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="icon">Icono</label>
+									<input type="text" class="form-control" id="icon" name="icon" placeholder="Icono" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="path">Ruta</label>
+									<input type="text" class="form-control" id="path" name="path" placeholder="Ruta" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="groups">Grupo de modulos</label>
+									<select multiple class="form-control" id="group" name="group">
+								    </select>
+								</div>
+
+								<!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_module_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- Delete Module modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="delete_module">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+			  <h4 class="modal-title">Eliminar Módulo</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	      </div>
+	      <div class="modal-body">
+	        Estas seguro que deseas eliminar este módulo?
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="delete_module_btn">Eliminar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/modules.js"></script>
+
+</body>
+
+</html>							

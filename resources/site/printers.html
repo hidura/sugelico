@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+
+	
+</head>
+
+<body>
+
+	<div class="container">
+	<header>
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 lateral_panel">
+					<nav class="navbar">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header ">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#principal_menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+							<a class="navbar-brand" href="/?md=index"><img src="images/logo-blanco3.svg"></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" >
+							<ul class="nav navbar-nav " id="principal_menu">
+							</ul>
+
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 user_info right">
+							<p>Bienvenido, <span id="user_name"></span></p>
+							<p>Fecha: <span id="current_date"></span></p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de printers</h3>
+										</div>
+										<div class="panel-body table_panel">
+										<div class="table-responsive">
+											<table class="table table-hover display" id="printers_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Marca</th>
+											  	<th>Modelo</th>
+											  	<th>Papersize</th>
+											  	<th>Thermal</th>
+											  	<th>Autocut</th>
+											  	<th>Path</th>
+											  	<th style="width: 70px;">Accion</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Marca</th>
+												  	<th>Modelo</th>
+												  	<th>Papersize</th>
+												  	<th>Thermal</th>
+												  	<th>Autocut</th>
+												  	<th>Path</th>
+											  		<th style="width: 70px;">Accion</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<!-- EDITAR PRINTER -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_printer">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar Printer</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar Printer</h3>
+						</div>
+						<div class="panel-body">
+							<form id="edit_printer_form">
+								<div class="form-group col-lg-12">
+									<label for="brand">Marca</label>
+									<input type="text" class="form-control" id="brand" name="brand" placeholder="Marca" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="model">Módelo</label>
+									<input type="text" class="form-control" id="model" name="model" placeholder="Módelo" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="papersize">Papersize</label>
+									<input type="text" class="form-control" id="papersize" name="papersize" placeholder="Papersize" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="thermal">Thermal</label><br>
+									<select class="form-control" id="thermal" name="thermal">
+										<option value="0">No</option>
+										<option value="1">Si</option>
+								      </select>
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="autocut">Autocut</label><br>
+									<select class="form-control" id="autocut" name="autocut">
+										<option value="0">No</option>
+										<option value="1">Si</option>
+								      </select>
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="path">Path</label>
+									<input type="text" class="form-control" id="path" name="path" placeholder="Path" required >
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_printer_btn">Editar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Delete user modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="delete_printer">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Eliminar tipo de producto</h4>
+	      </div>
+	      <div class="modal-body">
+	        Estas seguro que deseas eliminar este tipo de producto?
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="delete_printer_btn">Eliminar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/printers.js"></script>
+
+</body>
+
+</html>							

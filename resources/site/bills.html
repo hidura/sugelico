@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+</head>
+
+<body>
+
+	<div class="container">
+	<header>
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 col-md-12">
+
+
+					<nav class="navbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+
+
+						<div class="col-sm-1 col-sm-offset-1">
+								<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+							</div>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  </button>
+								  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+								  </div>
+								</div>
+							</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<div class="col-md-12 no-print main_content">
+
+					<div class="col-md-10" id="main_content">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Facturación</h3>
+										</div>
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-lg-12">
+													<form id="add_module_user_form">
+														<div class="form-group col-lg-12">
+															<label for="client">Cliente</label>
+															<div class="form-group input-group">
+																<select class="form-control" id="client"
+																	   name="client" required="">
+																</select>
+																<span class="input-group-addon">
+																	<button class="btn btn-info" onClick="addClient(); return false;">
+																		<i class="fa fa-search"></i></button></span>
+															</div>
+														</div>
+
+														<div class="form-group col-lg-12">
+															<label for="group">NCF</label>
+															<select class="form-control" id="ncftype" name="ncftype" required="true" >
+																<option value="0" selected>Seleccione un tipo de comprobante</option>
+															</select>
+														</div>
+
+														<div class="form-group col-lg-12">
+															<label for="group">Referencia</label>
+															<input type="text" class="form-control" id="group" name="group" required="">
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Información de pago</h3>
+										</div>
+										<div class="panel-body">
+											<div class="form-group col-lg-12">
+												<label for="paytype">Tipo de pago</label>
+												<select id="paytype">
+													<option value="0">Seleccione un tipo de pago</option>
+												</select>
+											</div>
+											<div class="col-lg-12">
+												<label for="paytype">Sub-Total</label>
+													<span id="subtotal">0.00</span>
+											</div>
+
+											<div class="col-lg-12">
+												<label for="paytype">Impuestos</label>
+													<span id="tax">0.00</span>
+											</div>
+											<div class="col-lg-12">
+												<label for="paytype">Descuento</label>
+													<span id="total_discount">0.00</span>
+											</div>
+											<div class="col-lg-12">
+												<hr/>
+												<label for="paytype">Total</label>
+														<strong id="total">0.00</strong>
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Productos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label for="product">Producto</label>
+														<select class="form-control" id="product" name="product" >
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-2">
+													<div class="form-group">
+														<label for="amount">Cantidad</label>
+														<input type="number" class="form-control" id="amount" name="amount"/>
+													</div>
+												</div>
+												<div class="col-lg-2">
+													<div class="form-group">
+														<label for="discount">Descuento(%)</label>
+														<input type="number" class="form-control" id="discount" name="discount"/>
+													</div>
+												</div>
+												<div class="col-lg-2">
+													<div class="form-group">
+														<br/>
+														<button id="add_product" class="btn btn-default">Agregar</button>
+													</div>
+												</div>
+											</div>
+											<div class="table-responsive">
+												<table class="table table-hover display" id="products_bill" cellspacing="0" width="100%">
+												  <thead>
+												  	<th>Nombre</th>
+												  	<th>Cantidad</th>
+												  	<th>Precio</th>
+												  	<th>Subtotal</th>
+												  	<th>Descuento</th>
+												  	<th>Impuesto</th>
+												  	<th>Total</th>
+											  		<th style="width: 70px;">Accion</th>
+												  </thead>
+												  <tbody id="products_tbd">
+												  </tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<button id="save_bill" type="submit" class="btn btn-default">Salvar</button>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="print-only">
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="panel panel-default">
+								<div class="panel-heading" style="text-align: center">
+									<h3 class="panel-title" id="company_name">FahFoud</h3>
+									<h3 class="panel-title" id="company_rnc">1-31-43060-2</h3>
+									<h3 class="panel-title" id="company_telephone">809-756-7148</h3>
+									<h3 class="panel-title" id="company_direction">FoodTruck Town</h3>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-lg-4">
+												<div class="form-group col-lg-12">
+													<label for="client_name_print">Nombre de cliente:</label>
+													<label id="client_name_print"></label>
+												</div>
+
+												<div class="form-group col-lg-12">
+													<label for="rnc">RNC:</label>
+													<label id="rnc" ></label>
+												</div>
+												<div class="form-group col-lg-12">
+													<label for="ncf">NCF:</label>
+													<label id="ncf" ></label>
+												</div>
+												<div class="form-group col-lg-12">
+													<label for="billcode">Codigo de factura:</label>
+													<label id="billcode" ></label>
+												</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group col-lg-12">
+												<label for="date">Fecha:</label>
+												<label id="date"></label>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="form-group col-lg-12">
+								<label type="text" style="text-align: center;" id="ncf_type"></label>
+							</div>
+							<div class="panel panel-default">
+
+								<div class="panel-body table_panel">
+									<div class="table-responsive">
+										<table class="table table-hover display" id="products_bill_print" cellspacing="0" width="100%">
+										  <thead>
+											<th>Nombre</th>
+											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Subtotal</th>
+											<th>Descuento</th>
+											<th>Impuesto</th>
+											<th>Total</th>
+										  </thead>
+										  <tbody id="products_tbd_print">
+										  </tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-lg-5">
+									<br/>
+									<br/>
+									<div class="panel panel-default" style="text-align: right;">
+
+										<div class="form-group col-lg-12">
+											<label for="subtotal">Subtotal:</label>
+											<label id="subtotal_print">0.00</label>
+										</div>
+										<div class="form-group col-lg-12">
+											<label for="subtotal">Impuestos:</label>
+											<label id="tax_print">0.00</label>
+										</div>
+										<div class="form-group col-lg-12">
+											<label for="subtotal">Descuento:</label>
+											<label id="disc_print">0.00</label>
+										</div>
+										<div class="form-group col-lg-12">
+											<label for="subtotal">Total:</label>
+											<label id="total_print">0.00</label>
+										</div>
+
+										<br/>
+										<br/>
+										<br/>
+										<br/>
+										<div class="form-group col-lg-12">
+											<label for="exp_date">Fecha de expiracion NCF:</label>
+											<label id="exp_date">31/12/2019</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/bill.js"></script>
+
+</body>
+
+</html>

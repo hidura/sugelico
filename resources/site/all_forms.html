@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+
+	
+</head>
+
+<body>
+
+	<div class="container">
+	<header>
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 lateral_panel">
+					<nav class="navbar">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header ">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#principal_menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+							<a class="navbar-brand" href="/?md=index"><img src="images/logo-blanco3.svg"></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="principal_menu">
+							<ul class="nav navbar-nav ">
+								<li><a href="#">Link</a></li>
+								<li><a href="#" class="selected">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#">Link</a></li>
+								<li><a href="#" class="close_sesion">Cerrar session</a></li>
+							</ul>
+
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+					<div class="row">
+						<div class="col-sm-12 user_info right">
+							<p>Bienvenido, NOMBRE DE EMPRESA</p>
+							<p>Fecha: 00/00/0000 00:00</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Crear Usuario</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="contact">Contacto</label>
+													<input type="text" class="form-control" id="contact" placeholder="Contacto" required >
+												</div>
+												<div class="form-group">
+													<label for="emailaddress">Correo Electrónico</label>
+													<input type="email" class="form-control" id="emailaddress" placeholder="Correo Electronico" required >
+												</div>
+												<div class="form-group">
+													<label for="password">Contraseña</label>
+													<input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+												</div>
+												<div class="form-group">
+													<label for="repassword">Repetir Contraseña</label>
+													<input type="password" class="form-control" id="repassword" placeholder="Repetir Contraseña" required >
+												</div>
+
+												<div class="form-group">
+													<label for="type">Tipo de usuario</label><br>
+													<select class="form-control" id="type" name="type">
+														<option value="0">--Please Select--</option>
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="waiter_code">Código mesero</label>
+													<input type="text" class="form-control" id="waiter_code" placeholder="Código mesero" required >
+												</div>
+											  <button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de usuarios</h3>
+										</div>
+										<div class="panel-body table_panel">
+										<div class="table-responsive">
+											<table class="table table-hover display" id="users_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Contacto</th>
+											  	<th>Correo Electrónico</th>
+											  	<th>Tipo de usuario</th>
+											  	<th>Código mesero</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Contacto</th>
+											  		<th>Correo Electrónico</th>
+											  		<th>Tipo de usuario</th>
+											  		<th>Código mesero</th>
+											  		<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+
+											  <tbody>
+											  	<tr >
+											  		<td>809-212-2333</td>
+											  		<td>narciso.arias21@gmail.com</td>
+											  		<td>Admin</td>
+											  		<td>00</td>
+											  		<td><button class="btn btn-success edit_user" data-id="1" data-toggle="modal" data-target="#edit_user"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_user" data-id="1" data-toggle="modal" data-target="#delete_user"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  	<tr>
+											  		<td>809-212-2333</td>
+											  		<td>juan.arias21@gmail.com</td>
+											  		<td>Admin</td>
+											  		<td>00</td>
+											  		<td><button class="btn btn-success edit_user" data-id="1" data-toggle="modal" data-target="#edit_user"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_user" data-id="1" data-toggle="modal" data-target="#delete_user"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar grupo de módulos</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="module_group_name">Nombre</label>
+													<input type="text" class="form-control" id="module_group_name" placeholder="Nombre" required >
+												</div>
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de grupos de módulos</h3>
+										</div>
+										<div class="panel-body table_panel">
+										<div class="table-responsive">
+											<table class="table table-hover display" id="module_group_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>ID</th>
+											  	<th>Nombre</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>ID</th>
+												  	<th>Nombre</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>1</td>
+											  		<td>Module group name 1</td>
+											  		<td><button class="btn btn-success edit_module_group" data-id="1" data-toggle="modal" data-target="#edit_module_group"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_module_group" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  	<tr>
+											  		<td>2</td>
+											  		<td>Module group name 1</td>
+											  		<td><button class="btn btn-success edit_module_group" data-id="1" data-toggle="modal" data-target="#edit_module_group"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_module_group" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar Módulo</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="module_name">Nombre</label>
+													<input type="text" class="form-control" id="module_name" placeholder="Nombre" required >
+												</div>
+												<div class="form-group">
+													<label for="path">Ruta</label>
+													<input type="text" class="form-control" id="path" placeholder="Ruta" required >
+												</div>
+												<div class="form-group">
+													<label for="icon">Icono</label>
+													<input type="text" class="form-control" id="icon" placeholder="Icono" required >
+												</div>
+												<div class="form-group">
+													<label for="user_type">Tipo de usuarios</label>
+													<select multiple class="form-control" id="user_type" name="user_type"> 
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="groups">Grupo de módulos</label>
+													<select multiple class="form-control" id="groups" name="groups"> 
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de módulos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="modules_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>ID</th>
+											  	<th>Nombre</th>
+											  	<th>Grupos</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>ID</th>
+												  	<th>Nombre</th>
+												  	<th>Grupos</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>1</td>
+											  		<td>Module name 1</td>
+											  		<td>Grupo name 1, Grupo name 2</td>
+											  		<td><button class="btn btn-success edit_module" data-id="1" data-toggle="modal" data-target="#edit_module"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_module" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  	<tr>
+											  		<td>2</td>
+											  		<td>Module name 1</td>
+											  		<td>Grupo name 1, Grupo name 3</td>
+											  		<td><button class="btn btn-success edit_module" data-id="1" data-toggle="modal" data-target="#edit_module"><i class="glyphicon glyphicon-pencil"></i></button>
+														<button class="btn btn-default delete_module" data-id="1"><i class="glyphicon glyphicon-remove"></i></button>
+											  		</td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar contacto</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="contact_name">Nombre</label>
+													<input type="text" class="form-control" id="contact_name" placeholder="Nombre" required >
+												</div>
+												<div class="form-group">
+													<label for="contact_email">Correo Electrónico</label>
+													<input type="email" class="form-control" id="contact_email" placeholder="Correo Electrónico" required >
+												</div>
+												<div class="form-group">
+													<label for="module_name">Télefono</label>
+													<input type="text" class="form-control" id="contact_tel" placeholder="Télefono" required >
+												</div>
+												<div class="form-group">
+													<label for="module_name">Dirección</label>
+													<input type="text" class="form-control" id="contact_address" placeholder="Dirección" required >
+												</div>
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de contactos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="contacts_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Nombre</th>
+											  	<th>Correo Electrónico</th>
+											  	<th>Tel</th>
+											  	<th>Dirección</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Nombre</th>
+												  	<th>Correo Electrónico</th>
+												  	<th>Tel</th>
+												  	<th>Dirección</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>Juan Perez</td>
+											  		<td>jaun@dminio.com</td>
+											  		<td>000-000-0000</td>
+											  		<td>#43 calle central</td>
+											  		<td><button class="btn btn-success edit_contact" data-id="1" data-toggle="modal" data-target="#edit_contact"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_contact" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  	<tr>
+											  		<td>Juan Arias</td>
+											  		<td>jaun_el_real@dminio.com</td>
+											  		<td>809-000-0000</td>
+											  		<td>Lejisimo</td>
+											  		<td><button class="btn btn-success edit_contact" data-id="1" data-toggle="modal" data-target="#edit_contact"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_contact" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar Producto</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="item_name">Nombre</label>
+													<input type="text" class="form-control" id="item_name" placeholder="Nombre" required >
+												</div>
+												<div class="form-group">
+													<label for="amount">Cantidad</label>
+													<input type="number" class="form-control" id="amount" placeholder="Cantidad" required >
+												</div>
+												<div class="form-group">
+													<label for="item_type">Tipo</label>
+													<select class="form-control" id="item_type" name="item_type" required> 
+														<option value="">Seleccione un tipo</option>
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<div class="form-group">
+													<label for="product_cat">Categoria</label>
+													<select class="form-control" id="product_cat" required > 
+														<option value="0">Seleccione la categoria</option>
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de productos</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="products_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Nombre</th>
+											  	<th>Cantidad</th>
+											  	<th>Tipo</th>
+											  	<th>Categoria</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Nombre</th>
+												  	<th>Cantidad</th>
+												  	<th>Tipo</th>
+												  	<th>Categoria</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>Advil</td>
+											  		<td>12</td>
+											  		<td>Pastilla</td>
+											  		<td>Relajante</td>
+											  		<td><button class="btn btn-success edit_product" data-id="1" data-toggle="modal" data-target="#edit_product"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_product" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  	<tr>
+									                <td>Advil</td>
+											  		<td>12</td>
+											  		<td>Pastilla</td>
+											  		<td>Relajante</td>
+											  		<td><button class="btn btn-success edit_product" data-id="1" data-toggle="modal" data-target="#edit_product"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_product" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar/Editar Compra</h3>
+										</div>
+										<div class="panel-body">
+											<form class="row">
+												<div class="form-group col-lg-4">
+													<label for="supplier">Suplidor</label>
+													<select class="form-control" id="supplier" name="supplier" required > 
+														<option value="0">Seleccione suplidor</option>
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="ncf">NCF</label>
+													<input type="text" class="form-control" id="ncf" placeholder="NCF" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="subtotal">Sub-Total</label>
+													<input type="number" class="form-control" id="subtotal" placeholder="Sub-Total" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="tax">Impuestos</label>
+													<input type="number" class="form-control" id="tax" name="total_tax" placeholder="Impuestos" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="other_costs">Otros Cargos</label>
+													<input type="number" class="form-control" id="other_costs" placeholder="Otros Cargos" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="discount">Descuentos</label>
+													<input type="number" class="form-control" id="discount" placeholder="Descuentos" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="total">Total</label>
+													<input type="number" class="form-control" id="total" placeholder="Total" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="paytype">Tipo de pago</label>
+													<select class="form-control" id="paytype" required > 
+														<option value="0">Tipo de pago</option>
+														<option value="75">Cajeros</option>
+														<option value="71">Usuario Administrador</option>
+														<option value="73">Usuario Bajo</option>
+														<option value="72">Usuario Medio</option>
+														<option value="74">Usuario Root</option>
+												      </select>
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="date">Fecha de compra</label>
+													<input type="date" class="form-control" id="date" placeholder="Cantidad" required >
+												</div>
+												<div class="form-group col-lg-4">
+													<label for="expiration">Fecha de expiración</label>
+													<input type="date" class="form-control" id="expiration" placeholder="Cantidad" required >
+												</div>
+												<div class="form-group col-lg-12">
+													<label for="payalert">Aviso de pago</label>
+													<textarea class="form-control" rows="3" id="payalert"></textarea>
+												</div>
+												<div class="col-lg-12">
+													<button type="submit" class="btn btn-default">Salvar</button>
+												</div>
+												
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Productos en la factura</h3>
+										</div>
+										<div class="panel-body table_panel">
+										<div class="table-responsive">
+											<table class="table table-striped display" id="orders_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Cantidad</th>
+											  	<th>Un</th>
+											  	<th>Producto</th>
+											  	<th>Precio</th>
+											  	<th>Impuestos</th>
+											  	<th>Total</th>
+											  </thead>
+											  <tbody>
+											  	<tr>
+									                <td>1</td>
+											  		<td>Something</td>
+											  		<td>Advil</td>
+											  		<td>25</td>
+											  		<td>4.5</td>
+											  		<td>29.5</td>
+									            </tr>
+									            <tr>
+									                <td>2</td>
+											  		<td>Something</td>
+											  		<td>Advil</td>
+											  		<td>50</td>
+											  		<td>9</td>
+											  		<td>59</td>
+									            </tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-lg-6 col-sm-12 col-lg-offset-3">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Agregar Proveedor</h3>
+										</div>
+										<div class="panel-body">
+											<form>
+												<div class="form-group">
+													<label for="supplier_name">Nombre</label>
+													<input type="text" class="form-control" id="supplier_name" placeholder="Nombre" required >
+												</div>
+												<div class="form-group">
+													<label for="supplier_email">Correo Electrónico</label>
+													<input type="email" class="form-control" id="supplier_email" placeholder="Correo Electrónico" required >
+												</div>
+												<div class="form-group">
+													<label for="supplier_tel">Télefono</label>
+													<input type="text" class="form-control" id="supplier_tel" placeholder="Télefono" required >
+												</div>
+												<div class="form-group">
+													<label for="supplier_address">Dirección</label>
+													<input type="text" class="form-control" id="supplier_address" placeholder="Dirección" required >
+												</div>
+												<button type="submit" class="btn btn-default">Salvar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Lista de proveedores</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="suppliers_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>Nombre</th>
+											  	<th>Correo Electrónico</th>
+											  	<th>Tel</th>
+											  	<th>Dirección</th>
+											  	<th style="width: 70px;">Acción</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>Nombre</th>
+												  	<th>Correo Electrónico</th>
+												  	<th>Tel</th>
+												  	<th>Dirección</th>
+												  	<th style="width: 70px;">Acción</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  	<tr>
+									                <td>Juan Perez</td>
+											  		<td>jaun@dminio.com</td>
+											  		<td>000-000-0000</td>
+											  		<td>#43 calle central</td>
+											  		<td><button class="btn btn-success edit_supplier" data-id="1" data-toggle="modal" data-target="#edit_supplier"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_supplier" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+									            </tr>
+											  	<tr>
+											  		<td>Juan Arias</td>
+											  		<td>jaun_el_real@dminio.com</td>
+											  		<td>809-000-0000</td>
+											  		<td>Lejisimo</td>
+											  		<td><button class="btn btn-success edit_supplier" data-id="1" data-toggle="modal" data-target="#edit_supplier"><i class="glyphicon glyphicon-pencil"></i></button>
+											  		<button class="btn btn-default delete_contact" data-id="1"><i class="glyphicon glyphicon-remove"></i></button></td>
+											  	</tr>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+		</header>
+	</div>
+
+
+	<!-- MODALES -->
+
+	<!-- EDITAR USUARIO -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_user">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar Usuario</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar Usuario</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_user_form">
+								<div class="form-group col-lg-6">
+									<label for="contact">Usuario</label>
+									<input type="text" class="form-control" id="user" name="user" placeholder="Contacto" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="emailaddress">Correo Electrónico</label>
+									<input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="Correo Electronico" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="password">Contraseña</label>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="repassword">Repetir Contraseña</label>
+									<input type="password" class="form-control" id="repassword" name="repassword" placeholder="Repetir Contraseña" required >
+								</div>
+
+								<div class="form-group col-lg-6">
+									<label for="type">Tipo de usuario</label>
+									<select class="form-control" id="type" name="types">
+										<option value="0">--Please Select--</option>
+										<option value="75">Cajeros</option>
+										<option value="71">Usuario Administrador</option>
+										<option value="73">Usuario Bajo</option>
+										<option value="72">Usuario Medio</option>
+										<option value="74">Usuario Root</option>
+								      </select>
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="waiter_code">Código mesero</label>
+									<input type="text" class="form-control" id="waiter_code" name="waiter_code" placeholder="Código mesero" required >
+								</div>
+							  <!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_user_btn">Editar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- EDITAR GRUPO DE MODULOS -->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_module_group">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar grupo de módulo</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar grupo de módulo</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_module_group_form">
+								<div class="form-group col-lg-12">
+									<label for="module_group_name">Nombre</label>
+									<input type="text" class="form-control" id="module_group_name" name="module_group_name" placeholder="Nombre" required >
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_module_group_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- EDITAR MODULOS -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_module">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar módulo</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar módulo</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_module_form">
+								<div class="form-group col-lg-6">
+									<label for="module_name">Nombre</label>
+									<input type="text" class="form-control" id="module_name" name="module_name" placeholder="Nombre" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="icon">Icono</label>
+									<input type="text" class="form-control" id="icon" name="icon" placeholder="Icono" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="path">Ruta</label>
+									<input type="text" class="form-control" id="path" name="path" placeholder="Ruta" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="user_type">Tipo de usuarios</label>
+									<select multiple class="form-control" id="user_type" name="user_type"> 
+										<option value="75">Cajeros</option>
+										<option value="71">Usuario Administrador</option>
+										<option value="73">Usuario Bajo</option>
+										<option value="72">Usuario Medio</option>
+										<option value="74">Usuario Root</option>
+								      </select>
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="groups">Grupo de módulos</label>
+									<select multiple class="form-control" id="groups" name="groups"> 
+										<option value="75">Cajeros</option>
+										<option value="71">Usuario Administrador</option>
+										<option value="73">Usuario Bajo</option>
+										<option value="72">Usuario Medio</option>
+										<option value="74">Usuario Root</option>
+								      </select>
+								</div>
+
+								<!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_module_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- EDITAR CONTACTOS -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_contact">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar contacto</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar contacto</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_contact_form">
+								<div class="form-group col-lg-12">
+									<label for="contact_name">Nombre</label>
+									<input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="Nombre" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="contact_email">Correo Electrónico</label>
+									<input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="Correo Electrónico" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="module_name">Télefono</label>
+									<input type="text" class="form-control" id="contact_tel" name="contact_tel" placeholder="Télefono" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="module_name">Dirección</label>
+									<input type="text" class="form-control" id="contact_address" name="contact_address" placeholder="Dirección" required >
+								</div>
+								<!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_contact_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- EDITAR PRODUCTOS -->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_product">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar producto</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar producto</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_product_form">
+								<div class="form-group col-lg-6">
+									<label for="item_name">Nombre</label>
+									<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Nombre" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="amount">Cantidad</label>
+									<input type="number" class="form-control" id="amount" name="amount" placeholder="Cantidad" required >
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="item_type">Tipo</label>
+									<select class="form-control" id="item_type" name="item_type" required> 
+										<option value="">Seleccione un tipo</option>
+										<option value="75">Cajeros</option>
+										<option value="71">Usuario Administrador</option>
+										<option value="73">Usuario Bajo</option>
+										<option value="72">Usuario Medio</option>
+										<option value="74">Usuario Root</option>
+								      </select>
+								</div>
+								<div class="form-group col-lg-6">
+									<label for="product_cat">Categoria</label>
+									<select class="form-control" id="product_cat" name="product_cat" required > 
+										<option value="0">Seleccione la categoria</option>
+										<option value="75">Cajeros</option>
+										<option value="71">Usuario Administrador</option>
+										<option value="73">Usuario Bajo</option>
+										<option value="72">Usuario Medio</option>
+										<option value="74">Usuario Root</option>
+								      </select>
+								</div>
+								<!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_product_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- MODAL PROVEEDORES -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="edit_supplier">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Editar proveedor</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Editar proveedor</h3>
+						</div>
+						<div class="panel-body">
+							<form class="row" id="edit_supplier_form">
+								<div class="form-group col-lg-12">
+									<label for="contact_name">Nombre</label>
+									<input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Nombre" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="contact_email">Correo Electrónico</label>
+									<input type="email" class="form-control" id="supplier_email" name="supplier_email" placeholder="Correo Electrónico" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="module_name">Télefono</label>
+									<input type="text" class="form-control" id="supplier_tel" name="supplier_tel" placeholder="Télefono" required >
+								</div>
+								<div class="form-group col-lg-12">
+									<label for="module_name">Dirección</label>
+									<input type="text" class="form-control" id="supplier_address" name="supplier_address" placeholder="Dirección" required >
+								</div>
+								<!-- <button type="submit" class="btn btn-default">Salvar</button> -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Everything looks good.
+			</div>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Ooohh!! Looks like an error occured.
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="edit_supplier_btn">Editar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- Delete user modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="delete_user">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Eliminar Usuario</h4>
+	      </div>
+	      <div class="modal-body">
+	        Estas seguro que deseas eliminar este usuario?
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="delete_user_btn">Eliminar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- END MODALES -->
+
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	
+	<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+
+</html>

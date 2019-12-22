@@ -1,0 +1,85 @@
+<div class="row">
+    <form id="addItem_frm">
+        <div class="col-md-5">
+            <label class="control-label">
+                    Producto:
+                </label>
+            <select id="product" style="width: 300px;" onChange="selProduct(this);" name="product"
+                   class="form-control" >
+                <option value="0" readonly>--Seleccione--</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="control-label">
+                    Cantidad:
+                </label>
+            <input id="amount" name="amount" type="number"
+                   class="form-control" placeholder="0.00">
+        </div>
+        <div class="col-md-3">
+            <div id="cur_amount_div" style="display: none;" >
+                <label class="control-label">
+                    Cantidad:
+                </label>
+                <input id="cur_amount" readonly name="cur_amount" type="number"
+                       class="form-control" placeholder="0.00">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Unidad del producto(En las recetas):
+                </label>
+            <div class="col-md-10">
+                <input id="equivalence" name="from_eq" class="form-control" readonly/>
+            </div>
+        </div>
+        <div class="col-md-5" id="buy_unit_div">
+            <label class="control-label">
+                    Unidad en la factura de compra:
+                </label>
+            <select id="buy_unit" name="to_eq"
+                   class="form-control" onChange="buy_unit_chg(this);">
+                <option value="0" readonly="true">Seleccione una unidad</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Sub-Total:
+                </label>
+            <input id="subtotal_item" name="subtotal" type="number"
+                   class="form-control" onChange="add2Total(this, 'total_item');" placeholder="0.00">
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Impuestos:
+                </label>
+            <input id="tax_item" name="total_tax" type="number"
+                   class="form-control" placeholder="0.00" onChange="add2Total(this, 'total_item');">
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Otros cargos:
+                </label>
+            <input id="other_costs_item" name="other_costs" type="number"
+                   class="form-control" placeholder="0.00" onChange="add2Total(this, 'total_item');">
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Descuentos:
+                </label>
+            <input id="discount_item" name="discount" type="number"
+                   class="form-control" placeholder="0.00" onChange="disc2Total(this, 'total_item');">
+        </div>
+        <div class="col-md-5">
+            <label class="control-label">
+                    Total:
+                </label>
+            <input id="total_item" name="total" type="number"
+                   class="form-control" value="0.00" placeholder="0.00" readonly>
+        </div>
+    </form>
+    <script type="text/javascript">
+        getTypes($("#buy_unit"), 5);
+    </script>
+</div>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Sugelico System</title>
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.dataTables.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+
+				<div class="col-xs-12 col-sm-2 col-md-12">
+
+
+					<nav class="navbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+
+
+						<div class="col-sm-1 col-sm-offset-1">
+								<a class="navbar-brand" href="?md=index"><img width="90px;" height="90px;" src="images/logo-blanco3.svg"></a>
+							</div>
+							<div class="col-sm-4 col-sm-offset-1">
+								<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+										  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  </button>
+								  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="principal_menu">
+
+								  </div>
+								</div>
+							</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+
+					<div class="row">
+						<div class="col-sm-12 main_content" id="main_content">
+							<form class="form-inline" id="filters">
+									<div class="form-group col-lg-3">
+										<label for="from">Desde</label>
+										<input type="text" class="form-control date" id="from" name="from" placeholder="Desde" required >
+									</div>
+									<div class="form-group col-lg-3">
+										<label for="end">Hasta</label>
+										<input type="text" class="form-control date" id="end" name="end" placeholder="Hasta" required >
+									</div>
+									<div class="form-group col-lg-3">
+										<label for="end">Tipo NCF</label>
+										<select type="text" class="form-control date" id="ncftype"
+											   name="ncf_type" required >
+											<option value="0">Elegir tipo de ncf</option>
+											<option value="11">Con valor fiscal</option>
+											<option value="12">Sin valor fiscal</option>
+										</select>
+									</div>
+									<div class="form-group col-lg-3">
+										<label for="from"></label>
+										<input class="btn btn-primary" style= "display: inherit;" type="submit" name="filter_report" value="Buscar" />
+									</div>
+
+								</form>
+							<br>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">Reporte 607</h3>
+										</div>
+										<div class="panel-body table_panel">
+											<div class="table-responsive">
+											<table class="table table-hover display" id="gen607_table" cellspacing="0" width="100%">
+											  <thead>
+											  	<th>FECHA</th>
+											  	<th>CLIENTE</th>
+											  	<th>RNC</th>
+											  	<th>NCF</th>
+											  	<th>SUBTOTAL</th>
+											  	<th>IMPUESTOS</th>
+											  	<th>TOTAL</th>
+											  	<th>TIPO DE PAGO</th>
+											  </thead>
+											  <tfoot>
+									            <tr>
+									                <th>FECHA</th>
+												  	<th>CLIENTE</th>
+												  	<th>RNC</th>
+												  	<th>NCF</th>
+												  	<th>SUBTOTAL</th>
+												  	<th>IMPUESTOS</th>
+												  	<th>TOTAL</th>
+											  		<th>TIPO DE PAGO</th>
+									            </tr>
+											  </tfoot>
+											  <tbody>
+											  </tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/libs/vfs_fonts.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/julian-date/dist/julianDate.min.js"></script>
+	<script type="text/javascript" src="js/libs/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/buttons.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/libs/select2.full.min.js"></script>
+
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/gen607.js"></script>
+</body>
+
+</html>
