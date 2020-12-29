@@ -24,7 +24,7 @@ class buildRq:
 
         if '<element ' in str(rawData):
             """
-            Antes de devolver esta mierda
+            Antes de devolver esto
             pasarlo por StringIO y en la primera
             quitarle el '>' y agregarle el path y el method
             y volver a colocarle el '>'
