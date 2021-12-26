@@ -46,9 +46,9 @@ class general:
 
         server_ssl = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server_ssl.ehlo()  # optional
-        sent_from = 'codeservicecorp@gmail.com'
+        sent_from = 'email@address.com'
         subject = 'NO-REPLY' + subject if subject != None else ""
-        pwd = "@60K72017#m"
+        pwd = "password"
         server_ssl.login(sent_from, pwd)
         email_text = """
         Subject: {}\n\n{}""".format(subject, bodyMsg)
